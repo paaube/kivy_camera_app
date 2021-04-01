@@ -1,0 +1,35 @@
+<MyGrid>
+
+    name: name
+    email: email
+
+    GridLayout:
+        cols: 1
+        size: root.width-100, root.height-100
+        pos: 50, 50
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Name: "
+                font_size: 30
+
+            TextInput:
+                id: name
+                multiline: False
+                font_size: 30
+
+            Label:
+                text: "Email: "
+                font_size: 30
+
+            TextInput:
+                id: email
+                multiline: False
+                font_size: 30
+
+        Button:
+            text: "Submit"
+            font_size: 30
+            on_press: root.btn()

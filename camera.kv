@@ -1,0 +1,57 @@
+WindowManager:
+    MainWindow:
+    SecondWindow:
+
+<MainWindow>:
+    name: "main"
+
+    FloatLayout:
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label
+            text: 'Welcome to the camera app!'
+            color: 0, 0, 0, 1
+            font_size: 40
+            pos_hint: {'center_x': 0.5, 'y':0.2}
+
+        Button:
+            text: "Take a picture"
+            pos_hint: {"center_x":0.5, "y":0.1}
+            size: 120, 120
+            size_hint: None, None
+            on_release: 
+                app.root.current = "second"
+                root.manager.transition.direction = "left"
+
+<SecondWindow>:
+    name: "second"
+
+    FloatLayout:
+
+        Camera:
+            id: cam
+            play: True
+            pos_hint: {'x':0, 'y':0}
+            size_hint: 1, 1
+
+        Button:
+            text: "Photo"
+            size_hint: 0.2, 0.1
+            pos_hint: {"center_x":0.5, "y":0}
+            on_press:
+                cam.export_to_png('photo.png')
+                
+
+        Button:
+            text: "back"
+            pos_hint: {'x':0, 'y':0}
+            size_hint: 0.1, 0.1
+            on_release: 
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
